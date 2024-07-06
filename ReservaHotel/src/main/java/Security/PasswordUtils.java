@@ -5,6 +5,11 @@ import org.mindrot.jbcrypt.BCrypt;
 public class PasswordUtils {
     //Metodo para hashear un pasword
     public static String hashPassword (String plainTextPassword) {
-        return BCrypt.hash
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt(12));
+    }
+    
+    //Metodo para verificar el password 
+    public static boolean verifyPassword (String plainTextPassword, String hashedPassword){
+        return BCrypt.checkpw(plainTextPassword, hashedPassword);
     }
 }
