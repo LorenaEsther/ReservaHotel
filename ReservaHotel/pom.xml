@@ -18,5 +18,12 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>12.6.2.jre11</version>
         </dependency>
+        <!-- Poder Hashear los password-->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+        
     </dependencies>
 </project>
