@@ -1,12 +1,12 @@
  
 import Controller.HabitacionController;
 import Model.HabitacionCrudModel;
-import View.HabitacionesFrameForm;
+import View.HabitacionesFrame;
 
 public class TestHabitaciones {
 
     public static void main(String[] args) { 
-        HabitacionesFrameForm frame = new HabitacionesFrameForm();
+        HabitacionesFrame frame = new HabitacionesFrame();
         HabitacionCrudModel model = new HabitacionCrudModel();
  
         HabitacionController controller = new HabitacionController(frame, model);

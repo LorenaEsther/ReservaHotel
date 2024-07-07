@@ -2,26 +2,26 @@ package Controller;
 
 import Model.Habitacion;
 import Model.HabitacionCrudModel;
-import View.HabitacionesFrameForm;
+import View.HabitacionesFrame;
 import View.HabitacionesTableModel;
 import java.util.List;
 
 public class HabitacionController {
 
-    private HabitacionesFrameForm frame;
+    private HabitacionesFrame frame;
     private HabitacionCrudModel model;
 
-    public HabitacionController(HabitacionesFrameForm frame, HabitacionCrudModel model) {
+    public HabitacionController(HabitacionesFrame frame, HabitacionCrudModel model) {
         this.frame = frame;
         this.model = model;
     }
 
     public void initController() {
-        frame.getBtnGuardar().setEnabled(false);
+        frame.getBtnAgregar().setEnabled(false);
         frame.getBtnBuscar().addActionListener(e -> buscarHabitacion());
-        frame.getBtnEditar().addActionListener(e -> makeFieldsEditable(true));
+        frame.getBtnEditar().addActionListener(e -> makeFieldsEditable(true,true));
         frame.getBtnActualizar().addActionListener(e -> guardarHabitacion(true));
-        frame.getBtnGuardar().addActionListener(e -> guardarHabitacion(false));
+        frame.getBtnAgregar().addActionListener(e -> guardarHabitacion(false));
         frame.getBtnEliminar().addActionListener(e -> eliminarHabitacion());
         frame.getBtnRetroceder().addActionListener(e -> retrocederFrame());
         cargarHabitaciones();
@@ -89,6 +89,7 @@ public class HabitacionController {
             frame.getTxtPrecio().setText(String.valueOf(habitacion.getPrecio()));
             frame.getCbxTipo().setSelectedItem(habitacion.getTipo());
             frame.getCbxEstado().setSelectedItem(habitacion.getEstado());
+            makeFieldsEditable(false);
         } else {
             frame.displayErrorMessage("Habitación no encontrada");
         }
@@ -99,9 +100,17 @@ public class HabitacionController {
         /*App.getInstancia().launchIntefaceBaseOnRole(usuarioID, role);*/
     }
 
-    private void makeFieldsEditable(boolean editable) {
+    private void makeFieldsEditable(boolean editable, boolean button) {
         frame.getTxtPrecio().setEditable(editable);
         frame.getCbxEstado().setEnabled(editable);
         frame.getCbxTipo().setEnabled(editable);
+        
+        frame.getBtnActualizar().setEnabled(button);
+        frame.getBtnAgregar().setEnabled(button);
     }
+ 
+    private void makeFieldsEditable(boolean editable) {
+        makeFieldsEditable(editable, false);
+    }
+    
 }
