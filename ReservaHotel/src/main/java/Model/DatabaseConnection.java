@@ -16,7 +16,9 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            System.out.println("Conectado");
             return DriverManager.getConnection(URL);
+            
 
         } catch (ClassNotFoundException e) {
             throw new IllegalStateException("JDBC driver no se ha encontrado", e);

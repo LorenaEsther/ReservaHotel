@@ -8,7 +8,7 @@ public class HabitacionesTableModel extends DefaultTableModel {
         super(new Object[]{"Tipo", "Precio", "Estado"}, 0);
     }
 
-    public void addHistorial(String fechaVisita, String diagnostico, String tratamiento, String comentarios) {
+    public void addHabitacion(String fechaVisita, String diagnostico, String tratamiento, String comentarios) {
         super.addRow(new Object[]{fechaVisita, diagnostico, tratamiento, comentarios}
         );
     }
