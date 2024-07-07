@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 public class HabitacionesTableModel extends DefaultTableModel {
 
     public HabitacionesTableModel() {
-        super(new Object[]{"Tipo", "Precio", "Estado"}, 0);
+        super(new Object[]{"Numero","Tipo", "Precio", "Estado"}, 0);
     }
 
     public void addHabitacion(String fechaVisita, String diagnostico, String tratamiento, String comentarios) {
