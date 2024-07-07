@@ -72,7 +72,7 @@ public class HabitacionCrudModel {
         }
     }
 
-    public List<Habitacion> obtenerTodasLasHabitaciones() {
+    public List<Habitacion> getHabitaciones() {
         List<Habitacion> habitaciones = new ArrayList<>();
         String query = "SELECT * FROM Habitaciones";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
