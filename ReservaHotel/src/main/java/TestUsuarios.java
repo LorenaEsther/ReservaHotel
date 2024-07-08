@@ -1,15 +1,15 @@
  
-import Controller.RegistroUsuarioController;
-import Model.RegistroUsuarioModel;
-import View.RegistroUsuarioFrame;
+import Controller.ClienteController;
+import Model.ClienteCrudModel;
+import View.ClienteFrame;
 
 public class TestUsuarios {
 
     public static void main(String[] args) { 
-        RegistroUsuarioFrame frame = new RegistroUsuarioFrame();
-        RegistroUsuarioModel model = new RegistroUsuarioModel();
+        ClienteFrame frame = new ClienteFrame();
+        ClienteCrudModel model = new ClienteCrudModel();
  
-        RegistroUsuarioController controller = new RegistroUsuarioController(frame, model);
+        ClienteController controller = new ClienteController(frame, model);
 
  
         frame.setVisible(true);
