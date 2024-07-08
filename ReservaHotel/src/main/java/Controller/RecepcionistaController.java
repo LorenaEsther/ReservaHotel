@@ -3,38 +3,35 @@ package Controller;
 
 //Base 
 import Base.App;
+import Model.ClienteCrudModel;
 
 //Model
 import Model.ReservaCrudModel;
-import Model.LoginModel;  
-import Model.HabitacionCrudModel;
-import Model.RegistroUsuarioModel;
+import Model.LoginModel;   
+import View.ClienteCrudFrame;
 
-//View
-import View.GerenteFrame; 
-import View.LoginFrame; 
-import View.RegistroUsuarioFrame;
-import View.HabitacionesFrame;
+//View 
+import View.LoginFrame;  
+import View.RecepcionistaFrame;
 import View.ReservaCrudFrame;
 import View.ReservasTableModel;
 import java.util.List;
 
 
-public class GerenteController {
-    private GerenteFrame frame;
+public class RecepcionistaController {
+    private RecepcionistaFrame frame;
     private ReservaCrudModel model;
 
-    public GerenteController(GerenteFrame frame, ReservaCrudModel model) {
+    public RecepcionistaController(RecepcionistaFrame frame, ReservaCrudModel model) {
         this.frame = frame;
         this.model = model;
         initController();
     }
     
     private void initController() {
-        frame.getBtnBuscar().addActionListener(e -> buscarReserva());
-        frame.getBtnCrudHabitaciones().addActionListener(e -> abrirCrudHabitaciones());
+        frame.getBtnBuscar().addActionListener(e -> buscarReserva()); 
         frame.getBtnCrudReservas().addActionListener(e -> abrirCrudReservas()); 
-        frame.getBtnCrudUsuarios().addActionListener(e -> abrirCrudUsuarios()); 
+        frame.getBtnCrudClientes().addActionListener(e -> abrirCrudClientes()); 
         frame.getBtnSalir().addActionListener(e -> performLogout());
         cargarReservas();
     }
@@ -77,23 +74,14 @@ public class GerenteController {
         reservaCrudFrame.setVisible(true);
         frame.dispose();
     }
-    
-    private void abrirCrudHabitaciones() {
-        HabitacionesFrame frameHabitaciones = new HabitacionesFrame();
-        HabitacionCrudModel modelHabitaciones = new HabitacionCrudModel(); 
-        HabitacionController controller = new HabitacionController(frameHabitaciones, modelHabitaciones); 
-        frameHabitaciones.setVisible(true);
+     
+    private void abrirCrudClientes() {
+        ClienteCrudModel clienteCrudModel = new ClienteCrudModel();
+        ClienteCrudFrame clienteCrudFrame = new ClienteCrudFrame();
+        new ClienteCrudController(clienteCrudFrame, clienteCrudModel);
+        clienteCrudFrame.setVisible(true);
         frame.dispose();
     }
-    
-    private void abrirCrudUsuarios() {
-        RegistroUsuarioFrame frameUsuarios = new RegistroUsuarioFrame();
-        RegistroUsuarioModel modelUsuario = new RegistroUsuarioModel(); 
-        RegistroUsuarioController controller = new RegistroUsuarioController(frameUsuarios, modelUsuario); 
-        frameUsuarios.setVisible(true);
-        frame.dispose();
-    }
-    
     
     private void showLoginScreen() {
         LoginFrame loginFrame = new LoginFrame();

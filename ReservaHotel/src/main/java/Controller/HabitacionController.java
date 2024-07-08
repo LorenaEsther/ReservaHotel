@@ -14,6 +14,7 @@ public class HabitacionController {
     public HabitacionController(HabitacionesFrame frame, HabitacionCrudModel model) {
         this.frame = frame;
         this.model = model;
+        initController();
     }
 
     private void initController() {
