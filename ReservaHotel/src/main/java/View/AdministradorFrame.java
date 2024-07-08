@@ -89,11 +89,11 @@ public class AdministradorFrame extends javax.swing.JFrame {
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
         getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 98, -1));
 
-        btnCrudReservas.setText("Ver Reservas");
+        btnCrudReservas.setText("Crud Reservas");
         getContentPane().add(btnCrudReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
 
         btnCrudClientes.setText("Crud Clientes");
-        getContentPane().add(btnCrudClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
+        getContentPane().add(btnCrudClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
 
         btnCrudHabitaciones.setText("Crud Habitaciones");
         getContentPane().add(btnCrudHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));

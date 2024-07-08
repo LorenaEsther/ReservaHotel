@@ -34,8 +34,8 @@ public class ReservaCrudModel {
         return reserva;
     }
 
-    public List<Reserva> buscarPorDNI(String dni) {
-        List<Reserva> reservas = new ArrayList<>();
+    public List<String[]> getReservasPorDni(String dni) {
+        List<String[]> reservas = new ArrayList<>();
         String query = "SELECT a.ReservaID, a.ClienteID, a.HabitacionNumero, a.FechaInicio, a.FechaFin, a.Estado, b.DNI "
                 + "FROM Reservas a JOIN Clientes b ON a.ClienteID = b.ClienteID "
                 + "WHERE b.DNI = ?";
@@ -43,16 +43,15 @@ public class ReservaCrudModel {
             stmt.setString(1, dni);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Reserva reserva = new Reserva(
-                        rs.getInt("ReservaID"),
-                        rs.getString("DNI"),
-                        rs.getInt("ClienteID"),
-                        rs.getInt("HabitacionNumero"),
-                        rs.getDate("FechaInicio"),
-                        rs.getDate("FechaFin"),
-                        rs.getString("Estado")
-                );
-                reservas.add(reserva);
+                String[] row = new String[7];
+                row[0] = rs.getString("ReservaID");
+                row[1] = rs.getString("Cliente");
+                row[2] = rs.getString("Dni");
+                row[3] = rs.getString("HabitacionNumero");
+                row[4] = rs.getString("FechaInicio");
+                row[5] = rs.getString("FechaFin");
+                row[6] = rs.getString("Estado");
+                reservas.add(row);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
