@@ -11,6 +11,19 @@ public class AdministradorFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JButton getBtnRetroceder() {
+        return btnRetroceder;
+    }
+
+    public JButton getBtnCrudReservas() {
+        return btnCrudReservas;
+    }
+
+    public JButton getBtnCrudHabitaciones() {
+        return btnCrudHabitaciones;
+    }
+    
+    
     public JButton getBtnBuscar() {
         return btnBuscar;
     }
@@ -59,6 +72,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
         btnCrudHabitaciones = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnRetroceder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,6 +118,9 @@ public class AdministradorFrame extends javax.swing.JFrame {
         jLabel2.setText("DNI");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
+        btnRetroceder.setText("Retroceder");
+        getContentPane().add(btnRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -113,6 +130,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnCrudClientes;
     private javax.swing.JButton btnCrudHabitaciones;
     private javax.swing.JButton btnCrudReservas;
+    private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnSalir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;

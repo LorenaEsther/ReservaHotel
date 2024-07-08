@@ -41,6 +41,12 @@ public class AdministradorController {
 
     private void initController() {
         cargarReservas();
+        frame.getBtnBuscar().addActionListener(e -> buscarReserva());
+        frame.getBtnSalir().addActionListener(e -> performLogout());
+        frame.getBtnRetroceder().addActionListener(e -> goBackLogin());
+        frame.getBtnCrudReservas().addActionListener(e -> abrirCrudReservas());
+        frame.getBtnCrudClientes().addActionListener(e -> abrirCrudClientes());
+        frame.getBtnCrudHabitaciones().addActionListener(e -> abrirCrudHabitacion());
 
     }
 
@@ -90,5 +96,30 @@ public class AdministradorController {
         clienteCrudFrame.setVisible(true);
         frame.dispose();
     }
-
+    
+    private void abrirCrudHabitacion() {
+        HabitacionCrudModel habitacionCrudModel = new HabitacionCrudModel();
+        HabitacionesFrame habitacionesCrudFrame = new HabitacionesFrame();
+        new HabitacionController(habitacionesCrudFrame, habitacionCrudModel);
+        habitacionesCrudFrame.setVisible(true);
+        frame.dispose();
+    }
+    
+    private void showLoginScreen() {
+        LoginFrame loginFrame = new LoginFrame();
+        LoginModel loginModel = new LoginModel();
+        new LoginController(loginFrame, loginModel, new App());
+        loginFrame.setVisible(true);
+    }
+    
+    private void performLogout() {
+        frame.dispose();
+        showLoginScreen();
+    }
+    
+    private void goBackLogin() {
+        frame.dispose();
+        showLoginScreen();
+    }
+    
 }
