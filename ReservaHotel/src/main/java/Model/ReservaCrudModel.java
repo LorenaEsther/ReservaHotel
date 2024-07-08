@@ -34,6 +34,32 @@ public class ReservaCrudModel {
         return reserva;
     }
 
+    public List<Reserva> buscarPorDNI(String dni) {
+        List<Reserva> reservas = new ArrayList<>();
+        String query = "SELECT a.ReservaID, a.ClienteID, a.HabitacionNumero, a.FechaInicio, a.FechaFin, a.Estado, b.DNI "
+                + "FROM Reservas a JOIN Clientes b ON a.ClienteID = b.ClienteID "
+                + "WHERE b.DNI = ?";
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, dni);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Reserva reserva = new Reserva(
+                        rs.getInt("ReservaID"),
+                        rs.getString("DNI"),
+                        rs.getInt("ClienteID"),
+                        rs.getInt("HabitacionNumero"),
+                        rs.getDate("FechaInicio"),
+                        rs.getDate("FechaFin"),
+                        rs.getString("Estado")
+                );
+                reservas.add(reserva);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return reservas;
+    }
+
     public boolean agregarReservas(Reserva reserva) {
         String clientQuery = "SELECT clienteId FROM Clientes WHERE DNI = ?";
         String insertQuery = "INSERT INTO Reservas (ClienteID, HabitacionNumero, FechaInicio, FechaFin, Estado) VALUES (?, ?, ?, ?, ?)";
