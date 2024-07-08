@@ -35,6 +35,18 @@ public class GerenteFrame extends javax.swing.JFrame {
         return txtDni;
     }
 
+    public JButton getBtnCrudHabitaciones() {
+        return btnCrudHabitaciones;
+    }
+
+    public JButton getBtnCrudReservas() {
+        return btnCrudReservas;
+    }
+
+    public JButton getBtnCrudUsuarios() {
+        return btnCrudUsuarios;
+    }
+
     public void displayErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Error Login", JOptionPane.ERROR_MESSAGE);
     }
@@ -67,7 +79,7 @@ public class GerenteFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RESERVA TELOS");
+        jLabel1.setText("RESERVA HOTEL");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 21, 207, -1));
 
