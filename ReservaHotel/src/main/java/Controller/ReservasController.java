@@ -1,18 +1,18 @@
 package Controller;
 
-import Model.Reserva;
+import Model.ReservaModel;
 import Model.ReservaCrudModel;
-import View.ReservasFrame;
+import View.ReservaCrudFrame;
 import View.ReservasTableModel;
 import java.util.Date;
 import java.util.List;
 
 public class ReservasController {
 
-    private ReservasFrame frame;
+    private ReservaCrudFrame frame;
     private ReservaCrudModel model;
 
-    public ReservasController(ReservasFrame frame, ReservaCrudModel model) {
+    public ReservasController(ReservaCrudFrame frame, ReservaCrudModel model) {
         this.frame = frame;
         this.model = model;
         initController();
@@ -47,7 +47,7 @@ public class ReservasController {
             Date fechaFin = frame.getJdcFechaFin().getDate();
             String estado = (String) frame.getCbxEstado().getSelectedItem();
  
-            Reserva reserva = new Reserva(0, dni, 0, habitacionNumero, fechaInicio, fechaFin, estado); // Assuming reservaID and clienteID will be set in database methods
+            ReservaModel reserva = new ReservaModel(0, dni, 0, habitacionNumero, fechaInicio, fechaFin, estado); // Assuming reservaID and clienteID will be set in database methods
 
             boolean success;
 
@@ -90,7 +90,7 @@ public class ReservasController {
 
     private void buscarReserva() {
         int reservaID = Integer.parseInt(frame.getTxtReservaID().getText()); 
-        Reserva reserva = model.buscarPorReservaID(reservaID);
+        ReservaModel reserva = model.buscarPorReservaID(reservaID);
         if (reserva != null) {
             frame.getTxtDniCliente().setText(reserva.getDni());
             frame.getTxtHabitacion().setText(String.valueOf(reserva.getHabitacionNumero()));

@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Date;
 
-public class Reserva {
+public class ReservaModel {
 
     private int reservaID;
     private int idcliente;
@@ -12,10 +12,10 @@ public class Reserva {
     private Date fechaFin;
     private String estado;
 
-    public Reserva() {
+    public ReservaModel() {
     }
 
-    public Reserva(int reservaID, String dni, int idcliente, int habitacionNumero, Date fechaInicio, Date fechaFin, String estado) {
+    public ReservaModel(int reservaID, String dni, int idcliente, int habitacionNumero, Date fechaInicio, Date fechaFin, String estado) {
         this.reservaID = reservaID;
         this.dni = dni;
         this.idcliente = idcliente;

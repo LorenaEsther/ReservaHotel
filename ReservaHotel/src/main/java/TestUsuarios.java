@@ -1,15 +1,15 @@
  
-import Controller.ClienteController;
+import Controller.ClienteCrudController;
 import Model.ClienteCrudModel;
-import View.ClienteFrame;
+import View.ClienteCrudFrame;
 
 public class TestUsuarios {
 
     public static void main(String[] args) { 
-        ClienteFrame frame = new ClienteFrame();
+        ClienteCrudFrame frame = new ClienteCrudFrame();
         ClienteCrudModel model = new ClienteCrudModel();
  
-        ClienteController controller = new ClienteController(frame, model);
+        ClienteCrudController controller = new ClienteCrudController(frame, model);
 
  
         frame.setVisible(true);

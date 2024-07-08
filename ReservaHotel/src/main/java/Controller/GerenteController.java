@@ -13,8 +13,13 @@ import Model.RegistroUsuarioModel;
 //View
 import View.GerenteFrame; 
 import View.LoginFrame;
+<<<<<<< HEAD
 import View.HabitacionesFrame; 
 import View.RegistroUsuarioFrame;
+=======
+import View.HabitacionesFrame;
+import View.ClienteCrudFrame;
+>>>>>>> c6f60437ef899ba233c10204209ea9d54db546f7
 import View.ReservasTableModel;
 import java.util.List;
 

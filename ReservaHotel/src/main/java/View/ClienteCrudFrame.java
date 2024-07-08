@@ -13,9 +13,9 @@ import javax.swing.JTextField;
  *
  * @author pc
  */
-public class ClienteFrame extends javax.swing.JFrame {
+public class ClienteCrudFrame extends javax.swing.JFrame {
 
-    public ClienteFrame() {
+    public ClienteCrudFrame() {
         initComponents();
     }
 

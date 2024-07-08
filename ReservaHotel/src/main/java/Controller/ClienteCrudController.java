@@ -2,16 +2,16 @@ package Controller;
 
 import Model.Cliente;
 import Model.ClienteCrudModel;
-import View.ClienteFrame;
+import View.ClienteCrudFrame;
 import View.ClienteTableModel;
 import java.util.List;
 
-public class ClienteController {
+public class ClienteCrudController {
 
-    private ClienteFrame frame;
+    private ClienteCrudFrame frame;
     private ClienteCrudModel model;
 
-    public ClienteController(ClienteFrame frame, ClienteCrudModel model) {
+    public ClienteCrudController(ClienteCrudFrame frame, ClienteCrudModel model) {
         this.frame = frame;
         this.model = model;
         initController();
