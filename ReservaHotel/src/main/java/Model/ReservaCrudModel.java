@@ -9,16 +9,33 @@ import java.util.List;
 
 public class ReservaCrudModel {
 
-    public boolean agregarReservas(Reserva reserva) {
-        String query = "INSERT INTO  Reservas (ClienteID,HabitacionNumero,FechaInicio,FechaFin ,Estado)  VALUES(?,?,?,?,?)";
-        
-        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, reserva.getNumero());
-            stmt.setString(2, reserva.getTipo());
-            stmt.setDouble(3, reserva.getPrecio());
-            stmt.setString(4, reserva.getEstado());
-            int affectedRows = stmt.executeUpdate();
-            return affectedRows > 0;
+    public boolean agregarReservas(Reserva reserva, String dni) { 
+        String clientQuery = "SELECT clienteId FROM Clientes WHERE DNI = ?";
+ 
+        String insertQuery = "INSERT INTO Reservas (ClienteID, HabitacionNumero, FechaInicio, FechaFin, Estado) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+           
+            try (PreparedStatement clientStmt = conn.prepareStatement(clientQuery)) {
+                clientStmt.setString(1, dni);
+                ResultSet clientRs = clientStmt.executeQuery();
+                if (!clientRs.next()) {
+                    System.out.println("No client found with DNI: " + dni);
+                    return false;  
+                }
+                int clientId = clientRs.getInt("clienteId");
+                 
+                try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
+                    insertStmt.setInt(1, clientId); // Set the client ID retrieved from the DNI
+                    insertStmt.setInt(2, reserva.getHabitacionNumero());
+                    insertStmt.setDate(3, new java.sql.Date(reserva.getFechaInicio().getTime()));
+                    insertStmt.setDate(4, new java.sql.Date(reserva.getFechaFin().getTime()));
+                    insertStmt.setString(5, reserva.getEstado());
+
+                    int affectedRows = insertStmt.executeUpdate();
+                    return affectedRows > 0;
+                }
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;

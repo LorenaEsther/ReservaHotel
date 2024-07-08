@@ -4,6 +4,7 @@ import Model.Reserva;
 import Model.ReservaCrudModel;
 import View.ReservasFrame;
 import View.ReservasTableModel;
+import java.util.Date;
 import java.util.List;
 
 public class ReservasController {
@@ -20,7 +21,7 @@ public class ReservasController {
     private void initController() {
         /*frame.getBtnAgregar().setEnabled(false);
         frame.getBtnBuscar().addActionListener(e -> buscarHabitacion());*/
-        frame.getBtnEditar().addActionListener(e -> makeFieldsEditable(true,true));
+        frame.getBtnEditar().addActionListener(e -> makeFieldsEditable(true, true));
         /*frame.getBtnActualizar().addActionListener(e -> guardarHabitacion(true));
         frame.getBtnAgregar().addActionListener(e -> guardarHabitacion(false));
         frame.getBtnEliminar().addActionListener(e -> eliminarHabitacion());*/
@@ -37,29 +38,32 @@ public class ReservasController {
         }
         frame.getTblReserva().setModel(tableModel);
     }
-    
+
     private void guardarReserva(boolean isUpdate) {
         try {
-            int numero = Integer.parseInt(frame.getTxtNumero().getText());
-            double precio = Double.parseDouble(frame.getTxtPrecio().getText());
-            String tipo = (String) frame.getCbxTipo().getSelectedItem();
+            String dni = frame.getTxtDniCliente().getText();
+            int habitacionNumero = Integer.parseInt(frame.getTxtHabitacion().getText());
+            Date fechaInicio = frame.getJdcFechaInicio().getDate();
+            Date fechaFin = frame.getJdcFechaFin().getDate();
             String estado = (String) frame.getCbxEstado().getSelectedItem();
 
-            Habitacion habitacion = new Habitacion(numero, tipo, precio, estado);
+            Reserva reserva = new Reserva(0, 0, habitacionNumero, fechaInicio, fechaFin, estado); // Assuming reservaID and clienteID will be set in agregarReservas
             boolean success;
 
             if (isUpdate) {
-                success = model.actualizarHabitacion(habitacion);
+                // Implement or call the method for updating reservation if necessary
+                // success = model.actualizarReserva(reserva, dni);
+                success=false;
             } else {
-                success = model.agregarHabitacion(habitacion);
+                success = model.agregarReservas(reserva, dni);
             }
 
             if (success) {
-                frame.displaySucessMessage(isUpdate ? "Habitación actualizada correctamente." : "Habitación agregada correctamente.");
+                frame.displaySucessMessage(isUpdate ? "Reserva actualizada correctamente." : "Reserva agregada correctamente.");
                 makeFieldsEditable(false);
-                cargarHabitaciones();
+                cargarReserva();  
             } else {
-                frame.displayErrorMessage(isUpdate ? "Error actualizando la habitación." : "Error agregando la habitación.");
+                frame.displayErrorMessage(isUpdate ? "Error actualizando la reserva." : "Error agregando la reserva.");
             }
 
         } catch (NumberFormatException e) {
@@ -68,8 +72,8 @@ public class ReservasController {
             frame.displayErrorMessage("Ocurrió un error inesperado.");
         }
     }
-    
-/*
+
+    /*
     private void eliminarHabitacion() {
         int numero = Integer.parseInt(frame.getTxtNumero().getText());
         if (model.eliminarHabitacion(numero)) {
@@ -91,25 +95,25 @@ public class ReservasController {
             frame.displayErrorMessage("Habitación no encontrada");
         }
     }
-*/
+     */
     private void retrocederFrame() {
         frame.dispose();
         /*App.getInstancia().launchIntefaceBaseOnRole(usuarioID, role);*/
     }
- 
+
     private void makeFieldsEditable(boolean editable, boolean button) {
         frame.getTxtDniCliente().setEditable(editable);
-        frame.getTxtHabitacion().setEditable(editable); 
-        frame.getCbxEstado().setEnabled(editable); 
+        frame.getTxtHabitacion().setEditable(editable);
+        frame.getCbxEstado().setEnabled(editable);
         frame.getJdcFechaInicio().setEnabled(editable);
         frame.getJdcFechaFin().setEnabled(editable);
-        
+
         frame.getBtnActualizar().setEnabled(button);
         frame.getBtnAgregar().setEnabled(button);
     }
- 
+
     private void makeFieldsEditable(boolean editable) {
         makeFieldsEditable(editable, false);
-    } 
-    
+    }
+
 }
