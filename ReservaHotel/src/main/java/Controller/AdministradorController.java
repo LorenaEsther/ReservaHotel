@@ -11,12 +11,14 @@ import Model.LoginModel;
 import Model.ClienteCrudModel;
 import Model.ClienteCrudModel;
 
+
 //View
 import View.AdministradorFrame;
 import View.HabitacionesTableModel;
 import View.LoginFrame;
 import View.HabitacionesFrame;
 import View.ClienteFrame;
+import View.ReservasTableModel;
 
 import java.io.File;
 import java.util.List;
@@ -54,7 +56,13 @@ public class AdministradorController {
             return;
         }
         
-        var reservas = model.getReservas()
+        var reservas = model.getReservasPorDni(dni);
+        ReservasTableModel tableModel = new ReservasTableModel();
+        
+        for (String[] reserva : reservas) {
+            tableModel.addReserva(reserva[0], reserva[1], reserva[2], reserva[3], reserva[4], reserva[5], reserva[6]);
+        }
+        frame.getTblReservas().setModel(tableModel);
     }
     
     
