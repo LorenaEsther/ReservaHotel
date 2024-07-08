@@ -18,29 +18,26 @@ public class Cliente extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JButton getBtnLimpiar() {
-        return btnLimpiar;
+    public JButton getBtnRetroceder() {
+        return btnRetroceder;
+    }
+       
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
     }
 
-    public JButton getBtnRegistrar() {
-        return btnRegistrar;
+    public JButton getBtnAgregar() {
+        return btnAgregar;
     }
 
-    public JButton getBtnSalir() {
-        return btnSalir;
+    public JButton getBtnEditar() {
+        return btnEditar;
     }
 
-    public JComboBox<String> getCbxRol() {
-        return cbxRol;
-    }
-
-    public JDateChooser getJdcFechaNac() {
-        return jdcFechaNac;
-    }
-
-    public JPasswordField getPswPassword() {
-        return pswPassword;
-    }
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }    
 
     public JTextField getTxtApellido() {
         return txtApellido;
@@ -77,19 +74,17 @@ public class Cliente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtDni = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        cbxRol = new javax.swing.JComboBox<>();
-        btnRegistrar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
-        pswPassword = new javax.swing.JPasswordField();
-        jdcFechaNac = new com.toedter.calendar.JDateChooser();
+        btnAgregar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnRetroceder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -100,62 +95,68 @@ public class Cliente extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 38, -1, -1));
 
         jLabel2.setText("DNI: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 136, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         jLabel3.setText("Nombre:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 188, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         jLabel4.setText("Apellido:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 243, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
 
         jLabel5.setText("Correo:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 313, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+        getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 218, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 218, -1));
+        getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 218, -1));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 218, -1));
 
-        jLabel6.setText("Contraseña:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 382, -1, -1));
+        btnAgregar.setText("Agregar");
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 105, -1));
 
-        jLabel7.setText("FechaNac:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 444, -1, -1));
-        getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 132, 218, -1));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 184, 218, -1));
-        getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 239, 218, -1));
-        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 309, 218, -1));
+        btnEditar.setText("Editar");
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 105, -1));
 
-        jLabel8.setText("Rol:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 136, -1, -1));
+        btnActualizar.setText("Actualizar");
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 105, -1));
 
-        getContentPane().add(cbxRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 131, 105, -1));
+        btnEliminar.setText("Eliminar");
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 105, -1));
 
-        btnRegistrar.setText("Registrar");
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 254, 105, -1));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
-        btnLimpiar.setText("Limpiar");
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 343, 105, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 334, 622, 302));
 
-        btnSalir.setText("Salir");
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 440, 105, -1));
-        getContentPane().add(pswPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 220, -1));
-        getContentPane().add(jdcFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 220, -1));
+        btnRetroceder.setText("Retroceder");
+        getContentPane().add(btnRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cbxRol;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private com.toedter.calendar.JDateChooser jdcFechaNac;
-    private javax.swing.JPasswordField pswPassword;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDni;
