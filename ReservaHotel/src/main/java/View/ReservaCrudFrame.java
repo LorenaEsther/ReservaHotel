@@ -9,9 +9,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
  
-public class ReservasFrame extends javax.swing.JFrame {
+public class ReservaCrudFrame extends javax.swing.JFrame {
  
-    public ReservasFrame() {
+    public ReservaCrudFrame() {
         initComponents();
     }
 

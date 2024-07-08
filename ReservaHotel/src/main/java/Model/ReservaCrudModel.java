@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ReservaCrudModel {
 
-    public Reserva buscarPorReservaID(int reservaID) {
-        Reserva reserva = null;
+    public ReservaModel buscarPorReservaID(int reservaID) {
+        ReservaModel reserva = null;
         String query = "SELECT a.ReservaID, a.ClienteID, a.HabitacionNumero, a.FechaInicio, a.FechaFin, a.Estado, b.DNI "
                 + "FROM Reservas a JOIN Clientes b ON a.ClienteID = b.ClienteID "
                 + "WHERE a.ReservaID = ?";
@@ -18,7 +18,7 @@ public class ReservaCrudModel {
             stmt.setInt(1, reservaID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                reserva = new Reserva(
+                reserva = new ReservaModel(
                         rs.getInt("ReservaID"),
                         rs.getString("DNI"),
                         rs.getInt("ClienteID"),
@@ -59,7 +59,7 @@ public class ReservaCrudModel {
         return reservas;
     }
 
-    public boolean agregarReservas(Reserva reserva) {
+    public boolean agregarReservas(ReservaModel reserva) {
         String clientQuery = "SELECT clienteId FROM Clientes WHERE DNI = ?";
         String insertQuery = "INSERT INTO Reservas (ClienteID, HabitacionNumero, FechaInicio, FechaFin, Estado) VALUES (?, ?, ?, ?, ?)";
 
@@ -90,7 +90,7 @@ public class ReservaCrudModel {
         }
     }
 
-    public boolean actualizarReservas(Reserva reserva) {
+    public boolean actualizarReservas(ReservaModel reserva) {
         String clientQuery = "SELECT clienteId FROM Clientes WHERE DNI = ?";
         String updateQuery = "UPDATE Reservas SET ClienteID = ?, HabitacionNumero = ?, FechaInicio = ?, FechaFin = ?, Estado = ? WHERE ReservaID = ?";
 

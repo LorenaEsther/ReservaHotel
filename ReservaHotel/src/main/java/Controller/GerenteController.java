@@ -14,7 +14,7 @@ import View.GerenteFrame;
 import View.HabitacionesTableModel;
 import View.LoginFrame;
 import View.HabitacionesFrame;
-import View.ClienteFrame;
+import View.ClienteCrudFrame;
 import View.ReservasTableModel;
 import java.util.List;
 
