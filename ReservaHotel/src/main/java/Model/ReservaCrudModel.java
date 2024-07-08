@@ -36,9 +36,9 @@ public class ReservaCrudModel {
 
     public List<String[]> getReservasPorDni(String dni) {
         List<String[]> reservas = new ArrayList<>();
-        String query = "SELECT a.ReservaID, a.ClienteID, a.HabitacionNumero, a.FechaInicio, a.FechaFin, a.Estado, b.DNI "
-                + "FROM Reservas a JOIN Clientes b ON a.ClienteID = b.ClienteID "
-                + "WHERE b.DNI = ?";
+        String query = "SELECT ReservaID, b.Nombre AS Cliente, b.Dni, a.HabitacionNumero, a.FechaInicio, a.FechaFin, a.Estado "
+                    + "FROM Reservas a JOIN Clientes b ON a.ClienteID = b.ClienteID "
+                    + "WHERE b.DNI = ?";
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, dni);
             ResultSet rs = stmt.executeQuery();
@@ -156,4 +156,5 @@ public class ReservaCrudModel {
             return false;
         }
     }
+
 }
