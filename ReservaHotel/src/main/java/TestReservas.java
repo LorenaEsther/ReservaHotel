@@ -1,15 +1,17 @@
  
 import Controller.GerenteController;
+import Controller.RecepcionistaController;
 import Model.ReservaCrudModel; 
 import View.GerenteFrame; 
+import View.RecepcionistaFrame;
 
 public class TestReservas {
 
     public static void main(String[] args) { 
-        GerenteFrame frame = new GerenteFrame();
+        RecepcionistaFrame frame = new RecepcionistaFrame();
         ReservaCrudModel model = new ReservaCrudModel();
  
-        GerenteController controller = new GerenteController(frame, model);
+        RecepcionistaController controller = new RecepcionistaController(frame, model);
   
         frame.setVisible(true);
     }

@@ -11,6 +11,10 @@ public class RecepcionistaFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JButton getBtnCrudReservas() {
+        return btnCrudReservas;
+    }
+    
     public JButton getBtnBuscar() {
         return btnBuscar;
     }
@@ -58,6 +62,7 @@ public class RecepcionistaFrame extends javax.swing.JFrame {
         btnCrudClientes = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,7 +72,7 @@ public class RecepcionistaFrame extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RESERVA TELOS");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 21, 207, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 21, 810, -1));
 
         tblReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,6 +105,10 @@ public class RecepcionistaFrame extends javax.swing.JFrame {
         jLabel2.setText("DNI");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Recepecionista");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 50, 810, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -113,6 +122,7 @@ public class RecepcionistaFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblReservas;
     private javax.swing.JTextField txtDni;
