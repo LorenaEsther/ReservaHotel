@@ -30,6 +30,7 @@ public class GerenteController {
     }
     
     private void initController() {
+        frame.getBtnBuscar().addActionListener(e -> buscarReserva());
         cargarReservas();
     }
     
@@ -45,9 +46,9 @@ public class GerenteController {
     }
     
     
-    public void buscarPorDni() {
+    public void buscarReserva() {
         String dni=frame.getTxtDni().getText();
-        List<String[]> data = model.buscarPorDNI(dni);
+        List<String[]> data = model.getReservasPorDni(dni);
         ReservasTableModel tableModel = new ReservasTableModel();
 
         for (String[] reserva : data) {
