@@ -6,20 +6,25 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
  *
  * @author pc
  */
-public class Cliente extends javax.swing.JFrame {
+public class ClienteFrame extends javax.swing.JFrame {
 
-    public Cliente() {
+    public ClienteFrame() {
         initComponents();
     }
 
     public JButton getBtnRetroceder() {
         return btnRetroceder;
+    }
+
+    public JTable getTblCliente() {
+        return tblCliente;
     }
        
 
@@ -83,7 +88,7 @@ public class Cliente extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCliente = new javax.swing.JTable();
         btnRetroceder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,7 +96,7 @@ public class Cliente extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 102));
-        jLabel1.setText("REGISTRAR NUEVOS USUARIOS");
+        jLabel1.setText("REGISTRAR CLIENTE");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 38, -1, -1));
 
         jLabel2.setText("DNI: ");
@@ -122,7 +127,7 @@ public class Cliente extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar");
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 105, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -133,7 +138,7 @@ public class Cliente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCliente);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 334, 622, 302));
 
@@ -156,7 +161,7 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblCliente;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDni;

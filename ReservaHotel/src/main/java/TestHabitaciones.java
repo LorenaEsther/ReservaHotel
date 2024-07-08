@@ -10,8 +10,7 @@ public class TestHabitaciones {
         HabitacionCrudModel model = new HabitacionCrudModel();
  
         HabitacionController controller = new HabitacionController(frame, model);
- 
-        controller.initController();
+
  
         frame.setVisible(true);
     }

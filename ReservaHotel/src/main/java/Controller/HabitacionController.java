@@ -16,7 +16,7 @@ public class HabitacionController {
         this.model = model;
     }
 
-    public void initController() {
+    private void initController() {
         frame.getBtnAgregar().setEnabled(false);
         frame.getBtnBuscar().addActionListener(e -> buscarHabitacion());
         frame.getBtnEditar().addActionListener(e -> makeFieldsEditable(true,true));
