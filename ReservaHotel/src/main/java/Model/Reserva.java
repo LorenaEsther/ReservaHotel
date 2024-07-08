@@ -3,26 +3,28 @@ package Model;
 import java.util.Date;
 
 public class Reserva {
+
     private int reservaID;
     private int idcliente;
+    private String dni;
     private int habitacionNumero;
     private Date fechaInicio;
     private Date fechaFin;
     private String estado;
- 
-    
+
     public Reserva() {
     }
- 
-    public Reserva(int reservaID, int idcliente, int habitacionNumero, Date fechaInicio, Date fechaFin, String estado) {
+
+    public Reserva(int reservaID, String dni, int idcliente, int habitacionNumero, Date fechaInicio, Date fechaFin, String estado) {
         this.reservaID = reservaID;
+        this.dni = dni;
         this.idcliente = idcliente;
         this.habitacionNumero = habitacionNumero;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.estado = estado;
     }
- 
+
     public int getReservaID() {
         return reservaID;
     }
@@ -47,8 +49,15 @@ public class Reserva {
         return estado;
     }
 
-    
+    public String getDni() {
+        return dni;
+    }
+
     // Setters
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     public void setReservaID(int reservaID) {
         this.reservaID = reservaID;
     }
@@ -71,5 +80,5 @@ public class Reserva {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    } 
+    }
 }
