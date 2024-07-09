@@ -16,11 +16,11 @@ public class LoginModel {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 String storedPassword = rs.getString("Contrasena");
-                int rol = rs.getInt("Rol");
+                String rol = rs.getString("Rol");
                 int usuarioID = rs.getInt("UsuarioID");
 
                 if (PasswordUtils.verifyPassword(password, storedPassword)) {
-                    return new String[]{String.valueOf(usuarioID), rol == 1 ? "Administrador" : rol == 2 ? "Recepcionista" : "Gerente"};
+                    return new String[]{String.valueOf(usuarioID), rol};
 
                 }
 

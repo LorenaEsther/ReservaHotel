@@ -1,6 +1,6 @@
-
 package Controller;
 //Base
+
 import Base.AppInterface;
 
 //View
@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginController {
+
     private LoginFrame loginFrame;
     private LoginModel loginModel;
     private AppInterface appInterface;
@@ -21,8 +22,13 @@ public class LoginController {
         this.loginFrame = loginFrame;
         this.loginModel = loginModel;
         this.appInterface = appInterface;
+        initController();
     }
-    
+
+    private void initController() {  // Añadido
+        loginFrame.getBtnIngresar().addActionListener(new LoginListener());
+    }
+
     private boolean validarUsuario(String username) {
         return username != null && !username.trim().isEmpty();
     }
@@ -30,7 +36,7 @@ public class LoginController {
     private boolean validarContrasena(String password) {
         return password != null && password.length() >= 6;
     }
-    
+
     class LoginListener implements ActionListener {
 
         @Override

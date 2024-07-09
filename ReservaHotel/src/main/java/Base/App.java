@@ -1,8 +1,16 @@
 package Base;
 
+import Controller.AdministradorController;
+import Controller.GerenteController;
 import Controller.LoginController;
+import Controller.RecepcionistaController;
 import Model.LoginModel;
+import Model.RegistroUsuarioModel;
+import Model.ReservaCrudModel;
+import View.AdministradorFrame;
+import View.GerenteFrame;
 import View.LoginFrame;
+import View.RecepcionistaFrame;
 
 public class App implements AppInterface {
 
@@ -24,8 +32,36 @@ public class App implements AppInterface {
     }
 
     @Override
-    public void onLoginSuccess(int Usuario, String role) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void onLoginSuccess(int usuarioID, String rol) {
+        if ("Gerente".equals(rol)) {
+            launchGerenteInterface(usuarioID);
+        } else if ("Administrador".equals(rol)) {
+            launchAdminInterface(usuarioID);
+        } else if ("Recepcionista".equals(rol)) {
+            launchRecepcionistaInterface(usuarioID);
+        }
+    }
+
+    private void launchGerenteInterface(int usuarioID) {
+        ReservaCrudModel model = new ReservaCrudModel();
+        GerenteFrame frame = new GerenteFrame();
+        new GerenteController(frame,model );
+        frame.setVisible(true);
+    }
+
+    private void launchAdminInterface(int usuarioID) {
+        ReservaCrudModel model = new ReservaCrudModel();
+        AdministradorFrame frame = new AdministradorFrame();
+        new AdministradorController(frame, model, usuarioID);
+        frame.setVisible(true);
+
+    }
+
+    private void launchRecepcionistaInterface(int usuarioID) {
+        ReservaCrudModel model = new ReservaCrudModel();
+        RecepcionistaFrame frame = new RecepcionistaFrame();
+        RecepcionistaController controller = new RecepcionistaController(frame, model);
+        frame.setVisible(true);
     }
 
     @Override
