@@ -23,10 +23,12 @@ import java.util.List;
 public class GerenteController {
     private GerenteFrame frame;
     private ReservaCrudModel model;
+    private String userRole;
 
-    public GerenteController(GerenteFrame frame, ReservaCrudModel model) {
+    public GerenteController(GerenteFrame frame, ReservaCrudModel model, String userRole) {
         this.frame = frame;
         this.model = model;
+        this.userRole = userRole;
         initController();
     }
     
@@ -73,7 +75,7 @@ public class GerenteController {
     private void abrirCrudReservas() {
         ReservaCrudModel reservaCrudModel = new ReservaCrudModel();
         ReservaCrudFrame reservaCrudFrame = new ReservaCrudFrame();
-        new ReservasController(reservaCrudFrame, reservaCrudModel);
+        new ReservasController(reservaCrudFrame, reservaCrudModel,userRole);
         reservaCrudFrame.setVisible(true);
         frame.dispose();
     }
@@ -81,7 +83,7 @@ public class GerenteController {
     private void abrirCrudHabitaciones() {
         HabitacionesFrame frameHabitaciones = new HabitacionesFrame();
         HabitacionCrudModel modelHabitaciones = new HabitacionCrudModel(); 
-        HabitacionController controller = new HabitacionController(frameHabitaciones, modelHabitaciones); 
+        HabitacionController controller = new HabitacionController(frameHabitaciones, modelHabitaciones, userRole); 
         frameHabitaciones.setVisible(true);
         frame.dispose();
     }
@@ -89,7 +91,7 @@ public class GerenteController {
     private void abrirCrudUsuarios() {
         RegistroUsuarioFrame frameUsuarios = new RegistroUsuarioFrame();
         RegistroUsuarioModel modelUsuario = new RegistroUsuarioModel(); 
-        RegistroUsuarioController controller = new RegistroUsuarioController(frameUsuarios, modelUsuario); 
+        RegistroUsuarioController controller = new RegistroUsuarioController(frameUsuarios, modelUsuario, userRole); 
         frameUsuarios.setVisible(true);
         frame.dispose();
     }

@@ -21,10 +21,12 @@ import java.util.List;
 public class RecepcionistaController {
     private RecepcionistaFrame frame;
     private ReservaCrudModel model;
+    private String userRole;
 
-    public RecepcionistaController(RecepcionistaFrame frame, ReservaCrudModel model) {
+    public RecepcionistaController(RecepcionistaFrame frame, ReservaCrudModel model, String userRole) {
         this.frame = frame;
         this.model = model;
+        this.userRole = userRole;
         initController();
     }
     
@@ -70,7 +72,7 @@ public class RecepcionistaController {
     private void abrirCrudReservas() {
         ReservaCrudModel reservaCrudModel = new ReservaCrudModel();
         ReservaCrudFrame reservaCrudFrame = new ReservaCrudFrame();
-        new ReservasController(reservaCrudFrame, reservaCrudModel);
+        new ReservasController(reservaCrudFrame, reservaCrudModel, userRole);
         reservaCrudFrame.setVisible(true);
         frame.dispose();
     }
@@ -78,7 +80,7 @@ public class RecepcionistaController {
     private void abrirCrudClientes() {
         ClienteCrudModel clienteCrudModel = new ClienteCrudModel();
         ClienteCrudFrame clienteCrudFrame = new ClienteCrudFrame();
-        new ClienteCrudController(clienteCrudFrame, clienteCrudModel);
+        new ClienteCrudController(clienteCrudFrame, clienteCrudModel, userRole);
         clienteCrudFrame.setVisible(true);
         frame.dispose();
     }

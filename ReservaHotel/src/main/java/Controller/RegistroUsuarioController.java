@@ -2,6 +2,8 @@ package Controller;
 //Model
 
 import Model.RegistroUsuarioModel;
+import Model.ReservaCrudModel;
+import View.GerenteFrame;
 
 //View
 import View.RegistroUsuarioFrame;
@@ -12,28 +14,30 @@ import java.util.List;
 
 public class RegistroUsuarioController {
 
-    private RegistroUsuarioFrame view;
+    private RegistroUsuarioFrame frame;
     private RegistroUsuarioModel model;
     private List<String[]> roles;
+    private String userRole;
 
-    public RegistroUsuarioController(RegistroUsuarioFrame view, RegistroUsuarioModel model) {
-        this.view = view;
+    public RegistroUsuarioController(RegistroUsuarioFrame view, RegistroUsuarioModel model, String userRole) {
+        this.frame = view;
         this.model = model;
         initController();
     }
 
     private void initController() {
         loadRoles();
-        view.getBtnRegistrar().addActionListener(e -> {registrar(); clearFields();});
-        view.getBtnLimpiar().addActionListener(e -> clearFields());
-        view.getBtnSalir().addActionListener(e -> salir());
+        frame.getBtnRegistrar().addActionListener(e -> {registrar(); clearFields();});
+        frame.getBtnLimpiar().addActionListener(e -> clearFields());
+        frame.getBtnSalir().addActionListener(e -> salir());
+        frame.getBtnRetroceder().addActionListener(e -> goBack());
 
     }
 
     private void clearFields() {
-        view.getTxtCorreo().setText("");
-        view.getPswPassword().setText("");
-        view.getCbxRol().setSelectedIndex(0);
+        frame.getTxtCorreo().setText("");
+        frame.getPswPassword().setText("");
+        frame.getCbxRol().setSelectedIndex(0);
     }
 
     private void loadRoles() {
@@ -43,33 +47,46 @@ public class RegistroUsuarioController {
                 new String[]{"3", "Gerente"}
         );
 
-        view.getCbxRol().removeAllItems();
+        frame.getCbxRol().removeAllItems();
         for (String[] rol : roles) {
-            view.getCbxRol().addItem(rol[1]);
+            frame.getCbxRol().addItem(rol[1]);
         }
     }
 
     private void registrar() {
-        String correo = view.getTxtCorreo().getText();
-        String password = new String(view.getPswPassword().getPassword());
-        int rolIndex = view.getCbxRol().getSelectedIndex();
+        String correo = frame.getTxtCorreo().getText();
+        String password = new String(frame.getPswPassword().getPassword());
+        int rolIndex = frame.getCbxRol().getSelectedIndex();
 
         if (rolIndex >= 0) {
             String rolId = roles.get(rolIndex)[0];
             String rolName = roles.get(rolIndex)[1];
 
             if (model.registerUser(correo, password, rolName)) {
-                view.displaySucessMessage("Usuario registrado exitosamente");
+                frame.displaySucessMessage("Usuario registrado exitosamente");
             } else {
-                view.displayErrorMessage("Error al registrar usuario");
+                frame.displayErrorMessage("Error al registrar usuario");
             }
         } else {
-            view.displayErrorMessage("Debe seleccionar un rol.");
+            frame.displayErrorMessage("Debe seleccionar un rol.");
         }
     }
     
     private void salir() {
-        view.dispose();
+        frame.dispose();
     }
+    
+    private void showManagerScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        GerenteFrame frameGerente = new GerenteFrame();
+        new GerenteController(frameGerente, model, userRole);
+        frameGerente.setVisible(true);
+    }
+    
+    private void goBack(){
+        frame.dispose();
+        showManagerScreen();
+    }
+    
 
 }

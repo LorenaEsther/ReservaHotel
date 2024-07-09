@@ -2,18 +2,23 @@ package Controller;
 
 import Model.Cliente;
 import Model.ClienteCrudModel;
+import Model.ReservaCrudModel;
+import View.AdministradorFrame;
 import View.ClienteCrudFrame;
 import View.ClienteTableModel;
+import View.RecepcionistaFrame;
 import java.util.List;
 
 public class ClienteCrudController {
 
     private ClienteCrudFrame frame;
     private ClienteCrudModel model;
+    private String userRole;
 
-    public ClienteCrudController(ClienteCrudFrame frame, ClienteCrudModel model) {
+    public ClienteCrudController(ClienteCrudFrame frame, ClienteCrudModel model, String userRole) {
         this.frame = frame;
         this.model = model;
+        this.userRole = userRole;
         initController();
     }
 
@@ -28,7 +33,8 @@ public class ClienteCrudController {
             clearFields();
         });
         frame.getBtnEliminar().addActionListener(e -> eliminarCliente());
-        frame.getBtnRetroceder().addActionListener(e -> retrocederFrame());
+        frame.getBtnRetroceder().addActionListener(e -> goBackReceptionist());
+        frame.getBtnRetroceder().addActionListener(e -> goBackAdmin());
         cargarClientes();
     }
 
@@ -137,4 +143,29 @@ public class ClienteCrudController {
         frame.getTxtDni().setText("");
         frame.getTxtCorreo().setText("");
     }
+    
+    private void showReceptionistScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        RecepcionistaFrame frameRec = new RecepcionistaFrame();
+        new RecepcionistaController(frameRec, model, userRole);
+        frame.setVisible(true);
+    }
+    
+    private void goBackReceptionist(){
+        frame.dispose();
+        showReceptionistScreen();
+    }
+    
+    private void showAdminScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        AdministradorFrame frameAdmin = new AdministradorFrame();
+        new AdministradorController(frameAdmin, model,userRole);
+        frame.setVisible(true);
+    }
+    
+    private void goBackAdmin(){
+        frame.dispose();
+        showAdminScreen();
+    }
+    
 }

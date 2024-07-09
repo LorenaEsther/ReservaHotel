@@ -2,6 +2,9 @@ package Controller;
 
 import Model.ReservaModel;
 import Model.ReservaCrudModel;
+import View.AdministradorFrame;
+import View.GerenteFrame;
+import View.RecepcionistaFrame;
 import View.ReservaCrudFrame;
 import View.ReservasTableModel;
 import java.util.Date;
@@ -11,10 +14,12 @@ public class ReservasController {
 
     private ReservaCrudFrame frame;
     private ReservaCrudModel model;
+    private String userRole;
 
-    public ReservasController(ReservaCrudFrame frame, ReservaCrudModel model) {
+    public ReservasController(ReservaCrudFrame frame, ReservaCrudModel model, String userRole) {
         this.frame = frame;
         this.model = model;
+        this.userRole = userRole;
         initController();
     }
 
@@ -25,7 +30,7 @@ public class ReservasController {
         frame.getBtnActualizar().addActionListener(e -> guardarReserva(true));
         frame.getBtnAgregar().addActionListener(e -> guardarReserva(false));
         frame.getBtnEliminar().addActionListener(e -> eliminarReserva());
-        frame.getBtnRetroceder().addActionListener(e -> retrocederFrame());
+        frame.getBtnRetroceder().addActionListener(e -> goBack());
         cargarReserva();
     }
 
@@ -128,6 +133,38 @@ public class ReservasController {
         frame.getCbxEstado().setSelectedIndex(0);
         frame.getJdcFechaInicio().setDate(null);
         frame.getJdcFechaFin().setDate(null);
+    }
+    
+    private void showAdminScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        AdministradorFrame frameAdmin = new AdministradorFrame();
+        new AdministradorController(frameAdmin, model, userRole);
+        frameAdmin.setVisible(true);
+    }
+    
+    private void showReceptionistScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        RecepcionistaFrame frameRec = new RecepcionistaFrame();
+        new RecepcionistaController(frameRec, model, userRole);
+        frame.setVisible(true);
+    }
+    
+    private void showManagerScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        GerenteFrame frameGerente = new GerenteFrame();
+        new GerenteController(frameGerente, model, userRole);
+        frameGerente.setVisible(true);
+    }
+    
+    private void goBack() {
+        frame.dispose();
+        if ("recepcionista".equalsIgnoreCase(userRole)) {
+            showReceptionistScreen();
+        } else if ("administrador".equalsIgnoreCase(userRole)) {
+            showAdminScreen();
+        } else {
+            showManagerScreen();
+        }
     }
 
 }

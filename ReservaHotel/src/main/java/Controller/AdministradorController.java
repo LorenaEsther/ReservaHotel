@@ -29,12 +29,12 @@ public class AdministradorController {
 
     private AdministradorFrame frame;
     private ReservaCrudModel model;
-    private int usuarioID;
+    private String userRole;
 
-    public AdministradorController(AdministradorFrame frame, ReservaCrudModel model, int usuarioID) {
+    public AdministradorController(AdministradorFrame frame, ReservaCrudModel model, String userRole) {
         this.frame = frame;
         this.model = model;
-        this.usuarioID = usuarioID;
+        this.userRole = userRole;
 
         initController();
     }
@@ -84,7 +84,7 @@ public class AdministradorController {
     private void abrirCrudReservas() {
         ReservaCrudModel reservaCrudModel = new ReservaCrudModel();
         ReservaCrudFrame reservaCrudFrame = new ReservaCrudFrame();
-        new ReservasController(reservaCrudFrame, reservaCrudModel);
+        new ReservasController(reservaCrudFrame, reservaCrudModel,userRole);
         reservaCrudFrame.setVisible(true);
         frame.dispose();
     }
@@ -92,7 +92,7 @@ public class AdministradorController {
     private void abrirCrudClientes() {
         ClienteCrudModel clienteCrudModel = new ClienteCrudModel();
         ClienteCrudFrame clienteCrudFrame = new ClienteCrudFrame();
-        new ClienteCrudController(clienteCrudFrame, clienteCrudModel);
+        new ClienteCrudController(clienteCrudFrame, clienteCrudModel, userRole);
         clienteCrudFrame.setVisible(true);
         frame.dispose();
     }
@@ -100,7 +100,7 @@ public class AdministradorController {
     private void abrirCrudHabitacion() {
         HabitacionCrudModel habitacionCrudModel = new HabitacionCrudModel();
         HabitacionesFrame habitacionesCrudFrame = new HabitacionesFrame();
-        new HabitacionController(habitacionesCrudFrame, habitacionCrudModel);
+        new HabitacionController(habitacionesCrudFrame, habitacionCrudModel, userRole);
         habitacionesCrudFrame.setVisible(true);
         frame.dispose();
     }

@@ -2,29 +2,36 @@ package Controller;
 
 import Model.Habitacion;
 import Model.HabitacionCrudModel;
+import Model.ReservaCrudModel;
+import View.AdministradorFrame;
+import View.GerenteFrame;
 import View.HabitacionesFrame;
 import View.HabitacionesTableModel;
+import View.RecepcionistaFrame;
 import java.util.List;
 
 public class HabitacionController {
 
     private HabitacionesFrame frame;
     private HabitacionCrudModel model;
+    private String userRole;
 
-    public HabitacionController(HabitacionesFrame frame, HabitacionCrudModel model) {
+    public HabitacionController(HabitacionesFrame frame, HabitacionCrudModel model, String userRole) {
         this.frame = frame;
         this.model = model;
+        this.userRole = userRole;
         initController();
     }
 
     private void initController() {
         frame.getBtnAgregar().setEnabled(false);
         frame.getBtnBuscar().addActionListener(e -> buscarHabitacion());
-        frame.getBtnEditar().addActionListener(e -> makeFieldsEditable(true,true));
+        frame.getBtnEditar().addActionListener(e -> makeFieldsEditable(true, true));
         frame.getBtnActualizar().addActionListener(e -> guardarHabitacion(true));
         frame.getBtnAgregar().addActionListener(e -> guardarHabitacion(false));
         frame.getBtnEliminar().addActionListener(e -> eliminarHabitacion());
-        frame.getBtnRetroceder().addActionListener(e -> retrocederFrame());
+        frame.getBtnRetroceder().addActionListener(e -> goBack());
+
         cargarHabitaciones();
     }
 
@@ -33,11 +40,11 @@ public class HabitacionController {
         HabitacionesTableModel tableModel = new HabitacionesTableModel();
 
         for (Habitacion habitacion : data) {
-            String numero = String.valueOf(habitacion.getNumero());  
+            String numero = String.valueOf(habitacion.getNumero());
             String tipo = habitacion.getTipo();
-            String precio = String.format("%.2f", habitacion.getPrecio());  
+            String precio = String.format("%.2f", habitacion.getPrecio());
             String estado = habitacion.getEstado();
- 
+
             tableModel.addHabitacion(numero, tipo, precio, estado);
         }
         frame.getTblHabitaciones().setModel(tableModel);
@@ -105,13 +112,36 @@ public class HabitacionController {
         frame.getTxtPrecio().setEditable(editable);
         frame.getCbxEstado().setEnabled(editable);
         frame.getCbxTipo().setEnabled(editable);
-        
+
         frame.getBtnActualizar().setEnabled(button);
         frame.getBtnAgregar().setEnabled(button);
     }
- 
+
     private void makeFieldsEditable(boolean editable) {
         makeFieldsEditable(editable, false);
     }
     
+    private void showManagerScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        GerenteFrame frameGerente = new GerenteFrame();
+        new GerenteController(frameGerente, model, userRole);
+        frameGerente.setVisible(true);
+    }
+    
+    private void showAdminScreen(){
+        ReservaCrudModel model = new ReservaCrudModel();
+        AdministradorFrame frameAdmin = new AdministradorFrame();
+        new AdministradorController(frameAdmin, model, userRole);
+        frameAdmin.setVisible(true);
+    }
+
+    private void goBack() {
+        frame.dispose();
+        if ("gerente".equalsIgnoreCase(userRole)) {
+            showManagerScreen();
+        } else if ("administrador".equalsIgnoreCase(userRole)) {
+            showAdminScreen();
+        } 
+    }
+
 }

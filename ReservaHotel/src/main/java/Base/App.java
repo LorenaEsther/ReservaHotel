@@ -43,24 +43,27 @@ public class App implements AppInterface {
     }
 
     private void launchGerenteInterface(int usuarioID) {
+        String userRole = "gerente";
         ReservaCrudModel model = new ReservaCrudModel();
         GerenteFrame frame = new GerenteFrame();
-        new GerenteController(frame,model );
+        new GerenteController(frame,model,userRole);
         frame.setVisible(true);
     }
 
     private void launchAdminInterface(int usuarioID) {
+        String userRole = "administrador";
         ReservaCrudModel model = new ReservaCrudModel();
         AdministradorFrame frame = new AdministradorFrame();
-        new AdministradorController(frame, model, usuarioID);
+        new AdministradorController(frame, model, userRole);
         frame.setVisible(true);
 
     }
 
     private void launchRecepcionistaInterface(int usuarioID) {
+        String userRole = "administrador";
         ReservaCrudModel model = new ReservaCrudModel();
         RecepcionistaFrame frame = new RecepcionistaFrame();
-        RecepcionistaController controller = new RecepcionistaController(frame, model);
+        new RecepcionistaController(frame, model, userRole);
         frame.setVisible(true);
     }
 
